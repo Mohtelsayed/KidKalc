@@ -10,23 +10,46 @@ else
     document.getElementById("game").style.display = "none";
   }
 
-num1 = 500;
-num2 = 500;
-accans = num1 + num2;
-while(accans>10)
-  {
-    num1 = Math.floor(Math.random()*10+1);
-    num2 = Math.floor(Math.random()*10+1);
+operations = ['+','-'];
+ operation = operations[Math.floor(Math.random() * operations.length)];
+ if(operation == '+')
+ {
+    num1 = 500;
+    num2 = 500;
     accans = num1 + num2;
+    while(accans>200)
+    {
+      num1 = Math.floor(Math.random()*200+1);
+      num2 = Math.floor(Math.random()*200+1);
+      accans = num1 + num2;
+    } 
+    document.getElementById("question").innerHTML = num1+" + "+num2;
+ }
+ else if(operation == '-')
+ {
+   num1 = Math.floor(Math.random()*200+1);
+   num2 = Math.floor(Math.random()*200+1);
+  if(num1 > num2)
+  {
+    document.getElementById("question").innerHTML = num1+" - "+num2;
+    accans = num1 - num2;
   }
-
-document.getElementById("question").innerHTML = num1+" + "+num2;
+  else
+  {
+    num1 = num1 + num2;
+    num2 = num1 - num2;
+    num1 = num1 - num2;
+    document.getElementById("question").innerHTML = num1+" - "+num2;
+    accans = num1 - num2;
+  }
+  
+ }
 
 function game () {
   coins =  coins - 1;
   document.getElementById("coins").innerHTML="Coins\n"+coins;
   document.getElementById("dropdowncoins").innerHTML="Coins: "+coins;
-  window.location.href="/game";
+  window.location.href="/game.html";
   document.getElementById("game").style.display = "none";
 }
  
@@ -66,17 +89,40 @@ function newquestion() {
   var input = document.getElementById('textbox');
   setCaretPosition(input, input.value.length);
   document.getElementById('textbox').value = '';
-  num1 = 500;
-  num2 = 500;
-  accans = num1 + num2;
-  while(accans>10)
+  operations = ['+','-'];
+ operation = operations[Math.floor(Math.random() * operations.length)];
+ if(operation == '+')
+ {
+    num1 = 500;
+    num2 = 500;
+    accans = num1 + num2;
+    while(accans>200)
     {
-      num1 = Math.floor(Math.random()*10+1);
-      num2 = Math.floor(Math.random()*10+1);
+      num1 = Math.floor(Math.random()*200+1);
+      num2 = Math.floor(Math.random()*200+1);
       accans = num1 + num2;
-    }
-    
-       document.getElementById("question").innerHTML = num1+" + "+num2;
+    } 
+    document.getElementById("question").innerHTML = num1+" + "+num2;
+ }
+ else if(operation == '-')
+ {
+   num1 = Math.floor(Math.random()*200+1);
+   num2 = Math.floor(Math.random()*200+1);
+  if(num1 > num2)
+  {
+    document.getElementById("question").innerHTML = num1+" - "+num2;
+    accans = num1 - num2;
+  }
+  else
+  {
+    num1 = num1 + num2;
+    num2 = num1 - num2;
+    num1 = num1 - num2;
+    document.getElementById("question").innerHTML = num1+" - "+num2;
+    accans = num1 - num2;
+  }
+  
+ }
 }
 
 function actual() {
@@ -95,7 +141,7 @@ function outputname() {
   document.getElementById("textbox").readOnly = true;
   var x,y,name,a,b,answer;
   y = document.getElementById("textbox").value;
-  if (y == num1 + num2) {
+  if (y == accans) {
     if ($(window).width() < 900) {
       score = score + 1;
       document.getElementById('textbox').style.textShadow = "0px 0px white";
